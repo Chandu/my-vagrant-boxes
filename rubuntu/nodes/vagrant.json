@@ -22,11 +22,13 @@
             "system_chef_solo" : "/opt/vagrant_ruby/bin/chef-solo"
         }
     },
+    "users": ["chandu"],
     "run_list": [
         "recipe[apt]",
         "recipe[nginx]",
         "recipe[rvm::vagrant]",
         "recipe[rvm::system]",
-        "recipe[git]"
+        "recipe[git]",
+        "recipe[user::data_bag]"
     ]
 }

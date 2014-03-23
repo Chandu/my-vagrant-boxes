@@ -3,7 +3,17 @@
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
-
+$SETUP_USER_CHANDU = <<SCRIPT
+	sudo mkdir -p /home/chandu/.ssh
+	sudo rm -rf /home/chandu/.ssh/*
+	sudo cp /fun/.ssh-for-vagrant/* /home/chandu/.ssh		
+	sudo chown -R chandu /home/chandu/.ssh/
+	for file in /home/chandu/.ssh/*
+	do
+	 # do something on $file
+	  sudo chmod 0400 $file
+	done
+SCRIPT
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	# All Vagrant configuration is done here. The most common configuration
 	# options are documented and commented below. For a complete reference,
@@ -11,7 +21,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	VAGRANT_BASE_BOX_PATH=Pathname(__FILE__).dirname.join('boxes', 'precise64.box').to_s
 
 	# Every Vagrant virtual environment requires a box to build off of.
-	config.vm.box = "rubuntu"
 	config.vm.boot_timeout=1000	
 	config.vm.box = "rubuntu"
 	config.vm.hostname = "rubuntu.dev"
@@ -84,7 +93,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	#   puppet.manifests_path = "manifests"
 	#   puppet.manifest_file  = "site.pp"
 	# end
-# config.vm.provision :shell, :inline => "/etc/init.d/networking restart"
+
 	# Enable provisioning with chef solo, specifying a cookbooks path, roles
 	# path, and data_bags path (all relative to this Vagrantfile), and adding
 	# some recipes and/or roles.
@@ -111,6 +120,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		chef.run_list = VAGRANT_JSON.delete('run_list')
 		chef.json = VAGRANT_JSON
 	end
+
+	
+	config.vm.provision :shell, :inline => $SETUP_USER_CHANDU
 
 	# Enable provisioning with chef server, specifying the chef server URL,
 	# and the path to the validation key (relative to this Vagrantfile).

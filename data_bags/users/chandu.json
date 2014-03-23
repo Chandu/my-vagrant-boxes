@@ -1,0 +1,8 @@
+{
+	"id"        : "chandu",
+	"comment"   : "Chandra Vedantham",
+	"home"      : "/home/chandu",
+	"groups"    : ["admin", "sudo"],
+	"ssh_keys": [
+	]
+  }
