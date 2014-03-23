@@ -1,0 +1,25 @@
+{
+    "rvm": {
+        "install_rubies": true,
+        "default_ruby": "2.1.0",
+        "global_gems": [
+            {
+                "name": "bundler"
+            },
+            {
+                "name": "rake",
+                "version": "0.9.2"
+            },
+            {
+                "name": "rubygems-bundler",
+                "action": "remove"
+            }
+        ]
+    },
+    "run_list": [
+        "recipe[apt]",
+        "recipe[nginx]",
+        "recipe[rvm::system]",
+        "recipe[git]"
+    ]
+}

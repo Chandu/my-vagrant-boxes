@@ -1,0 +1,54 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apt (2.3.8)
+    bluepill (2.3.1)
+      rsyslog (>= 0.0.0)
+    build-essential (1.4.4)
+    chef_gem (0.1.0)
+    chef_handler (1.1.5)
+    dmg (2.2.0)
+    git (4.0.0)
+      build-essential (>= 0.0.0)
+      dmg (>= 0.0.0)
+      runit (>= 1.0.0)
+      windows (>= 0.0.0)
+      yum (~> 3.0)
+      yum-epel (>= 0.0.0)
+    nginx (2.4.2)
+      apt (~> 2.2)
+      bluepill (~> 2.3)
+      build-essential (~> 1.4)
+      ohai (~> 1.1)
+      runit (~> 1.2)
+      yum (~> 3.0)
+      yum-epel (>= 0.0.0)
+    ohai (1.1.12)
+    rsyslog (1.12.2)
+    runit (1.5.10)
+      build-essential (>= 0.0.0)
+      yum (~> 3.0)
+      yum-epel (>= 0.0.0)
+    user (0.3.0)
+    windows (1.30.0)
+      chef_handler (>= 0.0.0)
+    yum (3.1.4)
+    yum-epel (0.3.4)
+      yum (~> 3.0)
+
+GIT
+  remote: git://github.com/fnichol/chef-rvm.git
+  ref: master
+  sha: 87f58d428c160337c1581ed1130a1a53d94e5126
+  specs:
+    rvm (0.9.1)
+      chef_gem (>= 0.0.0)
+
+DEPENDENCIES
+  apt (>= 0)
+  build-essential (< 2.0.0)
+  git (>= 0)
+  nginx (>= 0)
+  rvm (>= 0)
+  user (>= 0)
+
