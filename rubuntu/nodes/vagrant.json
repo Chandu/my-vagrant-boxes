@@ -13,12 +13,19 @@
             {
                 "name": "rails",
                 "version": "4.0.0"
+            },
+            {
+                "name" : "guard"
             }
-        ]
+        ],
+        "vagrant" : {
+            "system_chef_solo" : "/opt/vagrant_ruby/bin/chef-solo"
+        }
     },
     "run_list": [
         "recipe[apt]",
         "recipe[nginx]",
+        "recipe[rvm::vagrant]",
         "recipe[rvm::system]",
         "recipe[git]"
     ]
