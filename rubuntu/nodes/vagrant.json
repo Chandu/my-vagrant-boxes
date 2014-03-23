@@ -11,8 +11,8 @@
                 "version": "0.9.2"
             },
             {
-                "name": "rubygems-bundler",
-                "action": "remove"
+                "name": "rails",
+                "version": "4.0.0"
             }
         ]
     },
