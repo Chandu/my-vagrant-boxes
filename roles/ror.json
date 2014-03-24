@@ -1,0 +1,35 @@
+{
+	"name": "ror",
+	"chef_type": "role",
+	"json_class": "Chef::Role",
+	"default_attributes": {
+		"rvm": {
+			"install_rubies": true,
+			"default_ruby": "2.1.0",
+			"global_gems": [
+				{
+					"name": "bundler"
+				},
+				{
+					"name": "rake",
+					"version": "0.9.2"
+				},
+				{
+					"name": "rails",
+					"version": "4.0.0"
+				},
+				{
+					"name": "guard"
+				}
+			],
+			"vagrant": {
+				"system_chef_solo": "/opt/vagrant_ruby/bin/chef-solo"
+			}
+		}
+	},
+	"description": "The  role for system needing Ruby on Rails",
+	"run_list": [
+		"recipe[rvm::vagrant]",
+		"recipe[rvm::system]"
+	]
+}

@@ -21,7 +21,7 @@ machines = {
 	},
 	:rubuntu => {
 		:ipaddress => "10.0.0.4",
-		:run_list => "role[default]"
+		:run_list => "role[default],role[ror]"
 	},
 	:phuntu => {
 		:ipaddress => "10.0.0.3",
@@ -29,7 +29,7 @@ machines = {
 	},
 	:pyntu => {
 		:ipaddress => "10.0.0.6",
-		:run_list => "role[default]"
+		:run_list => "role[default],role[python]"
 	}
 }
 
@@ -61,7 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 				chef.roles_path = File.join(VAGRANT_CHEFFILES_PATH, "roles")
 				chef.data_bags_path = File.join(VAGRANT_CHEFFILES_PATH, "data_bags")
 				chef.provisioning_path = "/tmp/vagrant-chef"
-				chef.run_list = options[:run_list]
+				chef.run_list = options[:run_list].split(",")
 			end
 			config.vm.provision :shell, :inline => $SETUP_USER_CHANDU
 		end
