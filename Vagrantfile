@@ -15,19 +15,19 @@ VAGRANT_BASE_BOX_PATH= "file://" + (Pathname(__FILE__).dirname.join('boxes', 'pr
 VAGRANT_CHEFFILES_PATH = Pathname(__FILE__).dirname.to_s
 
 machines = {
-	"nobuntu" => {
+	:nobuntu => {
 		:ipaddress => "10.0.0.5",
 		:run_list => "role[default]"
 	},
-	"rubuntu" => {
+	:rubuntu => {
 		:ipaddress => "10.0.0.4",
 		:run_list => "role[default]"
 	},
-	"phuntu" => {
+	:phuntu => {
 		:ipaddress => "10.0.0.3",
 		:run_list => "role[default]"
 	},
-	"pyntu" => {
+	:pyntu => {
 		:ipaddress => "10.0.0.6",
 		:run_list => "role[default]"
 	}
@@ -39,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 	machines.each_pair do |name, options|
 		global_config.vm.define name do |config|
 			config.vm.boot_timeout=1000	
-			config.vm.box = name
+			config.vm.box = name.to_s
 			config.vm.hostname =  "#{name}.dev"
 			config.vm.box_url =  VAGRANT_BASE_BOX_PATH
 			config.vm.network "private_network", ip: options[:ipaddress]
