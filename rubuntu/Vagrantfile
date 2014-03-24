@@ -1,9 +1,0 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = "2"
-require_relative('../vagrant_common_config.rb')
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-	VagrantCommonConfig::configure config, "rubuntu", "rubuntu.dev",  "10.0.0.4",  File.expand_path(__FILE__)
-end
