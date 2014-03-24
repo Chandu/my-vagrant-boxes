@@ -20,6 +20,9 @@
 				},
 				{
 					"name": "guard"
+				},
+				{
+					"name": "jekyll"
 				}
 			],
 			"vagrant": {
