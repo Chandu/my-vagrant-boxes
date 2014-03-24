@@ -17,7 +17,7 @@ VAGRANT_CHEFFILES_PATH = Pathname(__FILE__).dirname.to_s
 machines = {
 	:nobuntu => {
 		:ipaddress => "10.0.0.5",
-		:run_list => "role[default]"
+		:run_list => "role[default],role[nodejs]"
 	},
 	:rubuntu => {
 		:ipaddress => "10.0.0.4",

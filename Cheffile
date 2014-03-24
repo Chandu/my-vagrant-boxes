@@ -14,5 +14,4 @@ cookbook 'git'
 cookbook 'user'
 cookbook 'nginx'
 cookbook 'python'
-cookbook 'php'
-
+cookbook 'nodejs'

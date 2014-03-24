@@ -1,0 +1,11 @@
+{
+    "name": "nodejs",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "default_attributes": {
+    },
+    "description": "The role for machines requiring nodejs",
+    "run_list": [
+        "recipe[nodejs]"
+    ]
+}
