@@ -25,7 +25,7 @@ machines = {
 	},
 	:phuntu => {
 		:ipaddress => "10.0.0.3",
-		:run_list => "role[default]"
+		:run_list => "role[default],role[php]"
 	},
 	:pyntu => {
 		:ipaddress => "10.0.0.6",

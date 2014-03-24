@@ -1,11 +1,8 @@
 {
-    "name": "puthon",
+    "name": "python",
     "chef_type": "role",
     "json_class": "Chef::Role",
     "default_attributes": {
-        "users": [
-            "chandu"
-        ]
     },
     "description": "The role for systems needing python",
     "run_list": [
