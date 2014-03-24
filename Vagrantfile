@@ -35,35 +35,35 @@ machines = {
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 	machines.each_pair do |name, options|
-		config.vm.boot_timeout=1000	
-		config.vm.box = name
-		config.vm.hostname = name + ".dev"
-		config.vm.box_url =  VAGRANT_BASE_BOX_PATH
-		config.vm.network "private_network", ip: options[:ipaddress]
-		config.vm.network "public_network"
-		config.vm.synced_folder "G:/", "/fun"
-		
-		config.ssh.forward_agent = true
+		global_config.vm.define name do |config|
+			config.vm.boot_timeout=1000	
+			config.vm.box = name
+			config.vm.hostname =  "#{name}.dev"
+			config.vm.box_url =  VAGRANT_BASE_BOX_PATH
+			config.vm.network "private_network", ip: options[:ipaddress]
+			config.vm.network "public_network"
+			config.vm.synced_folder "G:/", "/fun"
+			
+			config.ssh.forward_agent = true 
 
 
-		 config.vm.provider "virtualbox" do |vb|
-		#   # Don't boot with headless mode
-		#	vb.gui = true
-		#
-		#   # Use VBoxManage to customize the VM. For example to change memory:
-		#	vb.customize ["modifyvm", :id, "--memory", "512"]
-		 end
-		config.vm.provision :chef_solo do |chef|
-			chef.cookbooks_path =["site-cookbooks", "cookbooks"].map { |e| File.join(VAGRANT_CHEFFILES_PATH, e)  }
-			chef.roles_path = File.join(VAGRANT_CHEFFILES_PATH, "roles")
-			chef.data_bags_path = File.join(VAGRANT_CHEFFILES_PATH, "data_bags")
-			chef.provisioning_path = "/tmp/vagrant-chef"
-			chef.run_list = options[:run_list]
+			 config.vm.provider "virtualbox" do |vb|
+			#   # Don't boot with headless mode
+			#	vb.gui = true
+			#
+			#   # Use VBoxManage to customize the VM. For example to change memory:
+			#	vb.customize ["modifyvm", :id, "--memory", "512"]
+			 end
+			config.vm.provision :chef_solo do |chef|
+				chef.cookbooks_path =["site-cookbooks", "cookbooks"].map { |e| File.join(VAGRANT_CHEFFILES_PATH, e)  }
+				chef.roles_path = File.join(VAGRANT_CHEFFILES_PATH, "roles")
+				chef.data_bags_path = File.join(VAGRANT_CHEFFILES_PATH, "data_bags")
+				chef.provisioning_path = "/tmp/vagrant-chef"
+				chef.run_list = options[:run_list]
+			end
+			config.vm.provision :shell, :inline => $SETUP_USER_CHANDU
 		end
-
-		
-		config.vm.provision :shell, :inline => $SETUP_USER_CHANDU
 	end
 end
