@@ -12,6 +12,7 @@
         "recipe[apt]",
         "recipe[nginx]",
         "recipe[git]",
+        "recipe[nodejs]",
         "recipe[user::data_bag]"
     ]
 }
