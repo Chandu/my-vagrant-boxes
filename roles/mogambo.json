@@ -1,0 +1,11 @@
+{
+    "name": "mogambo",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "default_attributes": {
+    },
+    "description": "The base role for mono based machines",
+    "run_list": [
+        "recipe[mono]"
+    ]
+}

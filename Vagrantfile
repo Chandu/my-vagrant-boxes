@@ -11,25 +11,45 @@ $SETUP_USER_CHANDU = <<SCRIPT
 	  sudo chmod 0400 $file
 	done
 SCRIPT
+
+$MAKE_SYMLINK_VS10 = <<SCRIPT
+	cd /usr/lib/mono/xbuild/Microsoft/VisualStudio/
+	ln -s v9.0 v10.0
+SCRIPT
 VAGRANT_BASE_BOX_PATH= "file://" + (Pathname(__FILE__).dirname.join('boxes', 'precise64.box').to_s)
 VAGRANT_CHEFFILES_PATH = Pathname(__FILE__).dirname.to_s
 
 machines = {
 	:nobuntu => {
 		:ipaddress => "10.0.0.5",
-		:run_list => "role[default],role[nodejs]"
+		:run_list => "role[default],role[nodejs]",
+		:shell_commands => [
+		]
 	},
 	:rubuntu => {
 		:ipaddress => "10.0.0.4",
-		:run_list => "role[default],role[ror]"
+		:run_list => "role[default],role[ror]",
+		:shell_commands => [
+		]
 	},
 	:phuntu => {
 		:ipaddress => "10.0.0.3",
-		:run_list => "role[default],role[php]"
+		:run_list => "role[default],role[php]",
+		:shell_commands => [
+		]
 	},
 	:pyntu => {
 		:ipaddress => "10.0.0.6",
-		:run_list => "role[default],role[python]"
+		:run_list => "role[default],role[python]",
+		:shell_commands => [
+		]
+	},
+	:mogambo => {
+		:ipaddress => "10.0.0.7",
+		:run_list => "role[default],role[mogambo]",
+		:shell_commands => [
+			$MAKE_SYMLINK_VS10 
+		]
 	}
 }
 
@@ -47,9 +67,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 			config.vm.synced_folder "G:/", "/fun"
 			
 			config.ssh.forward_agent = true 
-
-
-			 config.vm.provider "virtualbox" do |vb|
+			config.vm.provider "virtualbox" do |vb|
 			#   # Don't boot with headless mode
 			#	vb.gui = true
 			#
@@ -64,6 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 				chef.run_list = options[:run_list].split(",")
 			end
 			config.vm.provision :shell, :inline => $SETUP_USER_CHANDU
+			options[:shell_commands].each { |x| config.vm.provision :shell, :inline =>  x }
 		end
 	end
 end
