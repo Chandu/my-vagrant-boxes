@@ -48,7 +48,8 @@ machines = {
 		:ipaddress => "10.0.0.7",
 		:run_list => "role[default],role[mogambo]",
 		:shell_commands => [
-			$MAKE_SYMLINK_VS10 
+			$MAKE_SYMLINK_VS10 ,
+			"sudo apt-get install mono-complete mono-gmcs"
 		]
 	}
 }
@@ -64,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 			config.vm.box_url =  VAGRANT_BASE_BOX_PATH
 			config.vm.network "private_network", ip: options[:ipaddress]
 			config.vm.network "public_network"
-			config.vm.synced_folder "G:/", "/fun"
+			config.vm.synced_folder "G:/", "/fun", type: "nfs"
 			
 			config.ssh.forward_agent = true 
 			config.vm.provider "virtualbox" do |vb|
