@@ -7,7 +7,6 @@ $SETUP_USER_CHANDU = <<SCRIPT
 	sudo chown -R chandu /home/chandu/.ssh/
 	for file in /home/chandu/.ssh/*
 	do
-	 # do something on $file
 	  sudo chmod 0400 $file
 	done
 SCRIPT
@@ -66,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 			config.vm.network "private_network", ip: options[:ipaddress]
 			config.vm.network "public_network"
 			config.vm.synced_folder "G:/", "/fun", type: "nfs"
-			
+			#config.omnibus.chef_version = :latest
 			config.ssh.forward_agent = true 
 			config.vm.provider "virtualbox" do |vb|
 			#   # Don't boot with headless mode
