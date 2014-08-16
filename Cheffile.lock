@@ -1,11 +1,14 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
+    apache2 (2.0.0)
+      iptables (>= 0.0.0)
+      logrotate (>= 0.0.0)
+      pacman (>= 0.0.0)
     apt (2.3.8)
     bluepill (2.3.1)
       rsyslog (>= 0.0.0)
     build-essential (1.4.4)
-    chef-sugar (2.0.0)
     chef_gem (0.1.0)
     chef_handler (1.1.5)
     dmg (2.2.0)
@@ -16,8 +19,8 @@ SITE
       windows (>= 0.0.0)
       yum (~> 3.0)
       yum-epel (>= 0.0.0)
-    iis (2.1.2)
-      windows (>= 1.2.6)
+    iptables (0.13.2)
+    logrotate (1.6.0)
     mono (0.0.4)
       apt (>= 0.0.0)
       git (>= 0.0.0)
@@ -36,13 +39,7 @@ SITE
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
     ohai (1.1.12)
-    php (1.4.6)
-      build-essential (>= 0.0.0)
-      iis (>= 0.0.0)
-      mysql (>= 0.0.0)
-      windows (>= 0.0.0)
-      xml (>= 0.0.0)
-      yum-epel (>= 0.0.0)
+    pacman (1.1.1)
     python (1.4.6)
       build-essential (>= 0.0.0)
       yum-epel (>= 0.0.0)
@@ -54,14 +51,21 @@ SITE
     user (0.3.0)
     windows (1.30.0)
       chef_handler (>= 0.0.0)
-    xml (1.2.6)
-      build-essential (>= 0.0.0)
-      chef-sugar (>= 0.0.0)
     yum (3.1.4)
     yum-epel (0.3.4)
       yum (~> 3.0)
     yum-mysql-community (0.1.10)
       yum (>= 3.0)
+
+GIT
+  remote: git://github.com/aporat/php55-cookbook.git
+  ref: master
+  sha: 71f75cc7655325f1c40ff195222b21dd86162acb
+  specs:
+    php (0.0.2)
+      apt (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      yum (>= 0.0.0)
 
 GIT
   remote: git://github.com/fnichol/chef-rvm.git
@@ -72,6 +76,7 @@ GIT
       chef_gem (>= 0.0.0)
 
 DEPENDENCIES
+  apache2 (>= 0)
   apt (>= 0)
   build-essential (>= 0)
   git (>= 0)
@@ -79,7 +84,7 @@ DEPENDENCIES
   mysql (~> 5.3.6)
   nginx (>= 0)
   nodejs (>= 0)
-  php (~> 1.4.6)
+  php (>= 0)
   python (>= 0)
   rvm (>= 0)
   user (>= 0)

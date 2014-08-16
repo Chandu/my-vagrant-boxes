@@ -9,6 +9,7 @@
     },
     "description": "The role for systems needing php",
     "run_list": [
-        "recipe[php]"
+        "recipe[php]",
+        "recipe[apache2]"
     ]
 }

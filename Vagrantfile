@@ -65,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 			config.vm.network "private_network", ip: options[:ipaddress]
 			config.vm.network "public_network"
 			config.vm.synced_folder "G:/", "/fun", type: "nfs"
-			#config.omnibus.chef_version = :latest
+			config.omnibus.chef_version = :latest
 			config.ssh.forward_agent = true 
 			config.vm.provider "virtualbox" do |vb|
 			#   # Don't boot with headless mode
