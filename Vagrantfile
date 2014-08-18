@@ -15,7 +15,7 @@ $MAKE_SYMLINK_VS10 = <<SCRIPT
 	cd /usr/lib/mono/xbuild/Microsoft/VisualStudio/
 	ln -s v9.0 v10.0
 SCRIPT
-VAGRANT_BASE_BOX_PATH= "file://" + (Pathname(__FILE__).dirname.join('boxes', 'precise64.box').to_s)
+VAGRANT_BASE_BOX_PATH= "file://" + (Pathname(__FILE__).dirname.join('boxes', 'ubuntu-base-14.box').to_s)
 VAGRANT_CHEFFILES_PATH = Pathname(__FILE__).dirname.to_s
 
 machines = {

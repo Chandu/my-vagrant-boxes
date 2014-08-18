@@ -3,13 +3,11 @@
     "chef_type": "role",
     "json_class": "Chef::Role",
     "default_attributes": {
-        "php" : {
-            "version" : "5.5"
-        }        
     },
     "description": "The role for systems needing php",
     "run_list": [
         "recipe[php]",
-        "recipe[apache2]"
+        "recipe[apache2]",
+        "recipe[composer]"
     ]
 }
