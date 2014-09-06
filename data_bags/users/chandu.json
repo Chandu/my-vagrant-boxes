@@ -3,6 +3,7 @@
 	"comment"   : "Chandra Vedantham",
 	"home"      : "/home/chandu",
 	"groups"    : ["admin", "sudo"],
+	"smbpasswd": "password",
 	"ssh_keys": [
 	]
   }
