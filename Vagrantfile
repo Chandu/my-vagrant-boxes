@@ -23,24 +23,36 @@ machines = {
 		:ipaddress => "10.0.0.5",
 		:run_list => "role[default],role[nodejs]",
 		:shell_commands => [
+		],
+		:shell_scripts => [
+			'./custom-scripts/samba/mount-samba-share.sh'
 		]
 	},
 	:rubuntu => {
 		:ipaddress => "10.0.0.4",
 		:run_list => "role[default],role[ror]",
 		:shell_commands => [
+		],
+		:shell_scripts => [
+			'./custom-scripts/samba/mount-samba-share.sh'
 		]
 	},
 	:phuntu => {
 		:ipaddress => "10.0.0.3",
 		:run_list => "role[default],role[php]",
 		:shell_commands => [
+		],
+		:shell_scripts => [
+			'./custom-scripts/samba/mount-samba-share.sh'
 		]
 	},
 	:pyntu => {
 		:ipaddress => "10.0.0.6",
 		:run_list => "role[default],role[python]",
 		:shell_commands => [
+		],
+		:shell_scripts => [
+			'./custom-scripts/samba/mount-samba-share.sh'
 		]
 	},
 	:mogambo => {
@@ -49,6 +61,9 @@ machines = {
 		:shell_commands => [
 			$MAKE_SYMLINK_VS10 ,
 			"sudo apt-get install mono-complete mono-gmcs"
+		],
+		:shell_scripts => [
+			'./custom-scripts/samba/mount-samba-share.sh'
 		]
 	}
 }
@@ -84,6 +99,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 			end
 			config.vm.provision :shell, :inline => $SETUP_USER_CHANDU
 			options[:shell_commands].each { |x| config.vm.provision :shell, :inline =>  x }
+			options[:shell_scripts].each { |x| config.vm.provision :shell, :path =>  x }
 		end
 	end
 end

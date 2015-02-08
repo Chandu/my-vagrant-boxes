@@ -1,0 +1,14 @@
+{
+  "id": "shares",
+  "shares": {
+    "export": {
+      "comment": "Projects",
+      "path": "/home/chandu/www",
+      "guest ok": "no",
+      "printable": "no",
+      "write list": ["chandu"],
+      "create mask": "0664",
+      "directory mask": "0775"
+    }
+  }
+}
