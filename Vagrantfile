@@ -79,10 +79,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 			config.vm.box_url =  VAGRANT_BASE_BOX_PATH
 			config.vm.network "private_network", ip: options[:ipaddress]
 			config.vm.network "public_network"
-			config.vm.synced_folder "G:/", "/fun", type: "nfs"
+			config.vm.synced_folder "G:/Github/up-for-grabs.net", "/fun", type: "rsync",   rsync__exclude: ".git/",:owner=> 'chandu', :mount_options => ['dmode=775', 'fmode=775']
 			config.omnibus.chef_version = :latest
 			config.ssh.forward_agent = true 
 			config.vm.provider "virtualbox" do |vb|
+			ENV["VAGRANT_DETECTED_OS"] = ENV["VAGRANT_DETECTED_OS"].to_s + " cygwin"
 			#   # Don't boot with headless mode
 			#	vb.gui = true
 			#
@@ -99,7 +100,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 			end
 			config.vm.provision :shell, :inline => $SETUP_USER_CHANDU
 			options[:shell_commands].each { |x| config.vm.provision :shell, :inline =>  x }
-			options[:shell_scripts].each { |x| config.vm.provision :shell, :path =>  x }
+			#options[:shell_scripts].each { |x| config.vm.provision :shell, :path =>  x }
 		end
 	end
 end
