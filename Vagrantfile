@@ -79,7 +79,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
 			config.vm.box_url =  VAGRANT_BASE_BOX_PATH
 			config.vm.network "private_network", ip: options[:ipaddress]
 			config.vm.network "public_network"
-			config.vm.synced_folder "G:/Github/up-for-grabs.net", "/fun", type: "rsync",   rsync__exclude: ".git/",:owner=> 'chandu', :mount_options => ['dmode=775', 'fmode=775']
+			config.vm.synced_folder "G:/BitBucket/time-tracker-ui", "/fun", type: "rsync",   rsync__exclude: [".git/", "node_modules/"], :owner=> 'chandu', :mount_options => ['dmode=777', 'fmode=777'], rsync__args: ["--verbose", "--rsync-path='rsync'", "--archive", "--delete", "-z", "--chmod=ugo+rwx" , "-u=chandu", "-g=chandu"], rsync__chown: true
 			config.omnibus.chef_version = :latest
 			config.ssh.forward_agent = true 
 			config.vm.provider "virtualbox" do |vb|
